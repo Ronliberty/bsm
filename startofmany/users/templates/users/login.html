@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="#"> <!-- Include your CSS file -->
+    <title>Signup and Login</title>
+</head>
+<body style="font-family: Arial, sans-serif; background: #1cc88a; margin: 0; padding: 0;">
+<div style="position: absolute; width: 100%; height: 100%; background: linear-gradient(to bottom right, #4e73df, #1cc88a);">
+    <a href="previous_page.html"
+           style="text-decoration: none; color: white; font-weight: bold; position: absolute; top: 20px; left: 20px; margin-bottom: 10px; font-size: 16px; transition: color 0.3s;"
+           onmouseover="this.style.color='black'"
+           onmouseout="this.style.color='#fff'">
+            &#8592; Go Back
+        </a>
+    <div class="container" id="container" style="display: flex; justify-content: center; align-items: center; height: 100%; padding: 20px;">
+        <div class="forms-container" style=" margin-top: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 40px; width: 60%; height: 50vh; text-align: center;">
+            <form action="{% url 'users:client_login' %}" method="post" style=" height: 50vh;">
+                    {% csrf_token %}
+                    <h1 style="font-size: 24px; color: #333; margin-top: 20px; margin-bottom: 20px;">Login</h1>
+                    <input type="text" id="login-username" name="username" class="input-field" placeholder="Username" style="width: 80%; background-color: aliceblue; padding: 12px; margin-top: 20px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;" required />
+                    <input type="password" id="login-password" name="password" class="input-field" placeholder="Password" style="width: 80%; background-color: aliceblue; padding: 12px; margin-top: 20px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px;" required />
+                    <button type="submit" class="btn" style="width: 30%; padding: 12px; background-color: blue; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s; margin-top: 20px; margin-bottom: 10px;">Login</button>
+                <div style="margin-top: 20px; margin-bottom: 20px;">
+                    <p style=" color: black; font-size: 1.3rem;">Don't have an account? <a href="{% url 'users:client_signup' %}" style="color: purple; text-decoration: none; font-weight: bold; margin-bottom: 15px;">Sign up here</a></p>
+                </div>
+            </form>
+    </div>
+</body>
+</html>
+

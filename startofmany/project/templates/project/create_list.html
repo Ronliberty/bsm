@@ -1,0 +1,44 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Project List{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center; color: black; margin-bottom: 20px;">Project List</h1>
+    {% if projects %}
+<style>
+ .project-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s, box-shadow 0.2s; /* Transition for smooth effect */
+}
+
+.project-item:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 15px blue; /* Add shadow on hover */
+}
+
+</style>
+        <ul style="list-style-type: none; padding: 0;">
+            {% for project in projects %}
+                <li class="project-item">
+                    <div style="margin-bottom: 20px; display: flex; align-items: center; "><strong>Title:</strong> <span style="color: blue; font-weight: bold;"> <div style=" padding: 10px; ">{{ project.title }} </span> </div></div>
+                     <div style="margin-bottom: 12px;"> <strong>Description:</strong> <div>{{ project.description }}<br></div></div>
+                    {% if project.file %}
+                        <div style="margin-bottom: 12px;" ><strong>File:</strong> <a href="{{ project.file.url }}" style="color: blue">Download</a><br></div>
+                    {% endif %}
+                    {% if project.link %}
+                        <div style="margin-bottom: 12px;"><strong>Link:</strong> <a href="{{ project.link }}" target="_blank">{{ project.link }}</a><br></div>
+                    {% endif %}
+                   <div style="margin-bottom: 20px;"><strong>Created At:</strong> {{ project.created_at|date:"F j, Y, g:i a" }}</div>
+                </div>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No projects found.</p>
+    {% endif %}
+{% endblock %}

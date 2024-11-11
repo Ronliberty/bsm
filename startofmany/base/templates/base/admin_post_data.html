@@ -1,0 +1,72 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Requested Services{% endblock %}
+
+{% block content %}
+
+<style>
+    .submit-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for smooth effects */
+}
+
+.submit-button:hover {
+    background-color: blue; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.submit-button:active {
+    transform: scale(0.95); /* Slightly shrink when clicked */
+}
+.delete-button {
+    display: inline-block; /* Makes the link behave like a button */
+    background-color: red; /* Background color of the button */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* Remove any border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    margin-right: 40px; /* Space to the right */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.delete-button:hover {
+    background-color: darkred; /* Change color on hover */
+}
+.body {
+font-family: "Playwrite GB S", cursive;
+}
+
+</style>
+
+    <!-- base/admin_post_data.html -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:wght@400;700&display=swap">
+<h1 style="color: Black; font-family: Arial, sans-serif; text-align: center; margin-bottom:15px;"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">{{ section_name|title }} Section</h1>
+
+<form method="post" action="{% url 'base:section' section_name %}" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="submit-button">Submit {{ section_name|title }} Content</button>
+</form>
+
+<!-- List existing items for the section with delete options -->
+<h2 style="color: black; font-family: Arial, sans-serif; margin-top: 30px; text-align: center;">Existing {{ section_name|title }} Items</h2>
+<ul style="list-style-type: none; padding: 0;">
+    {% for item in items %}
+        <li style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc; color: black; margin-left: 50px;">
+            {{ item }}  <!-- Customize display, e.g., item.title, item.name -->
+            <a href="{% url 'base:delete_item' section_name item.id %}" class="delete-button">Delete</a>
+        </li>
+    {% empty %}
+        <p style="color: #7f8c8d;">No items available in {{ section_name }}.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

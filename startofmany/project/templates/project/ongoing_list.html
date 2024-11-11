@@ -1,0 +1,52 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Ongoing Projects{% endblock %}
+{% block content %}
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <h1 style="font-size: 24px; color: black; text-align: center; margin-bottom: 20px; ">Ongoing Projects</h1>
+
+        {% if ongoing_projects %}
+            <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                {% for project in ongoing_projects %}
+                    <div style="width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #FCF8F3; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px blue';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)';">
+                        <h2 style="font-size: 18px; color: blue; margin: 0 0 10px;">{{ project.title }}</h2>
+                        <p style="font-size: 14px; color: black; margin: 0 0 10px;">{{ project.description }}</p>
+
+                        <div style="margin-bottom: 8px;">
+                            <strong>File:</strong>
+                            {% if project.file %}
+                                <a href="{{ project.file.url }}" target="_blank" style="color: blue; text-decoration: none;" onmouseover="this.style.color=''" onmouseout="this.style.color='blue'">Download</a>
+                            {% else %}
+                                <span style="color: #999;">No file</span>
+                            {% endif %}
+                        </div>
+
+                        <div style="margin-bottom: 8px;">
+                            <strong>Link:</strong>
+                            {% if project.link %}
+                                <a href="{{ project.link }}" target="_blank" style="color: green;">View Link</a>
+                            {% else %}
+                                <span style="color: black;">No link</span>
+                            {% endif %}
+                        </div>
+
+                        <div style="margin-bottom: 8px;">
+                            <strong>Assigned To:</strong>
+                            {% if project.assigned_to %}
+                                <span style="color: black;">{{ project.assigned_to.username }}</span>
+                            {% else %}
+                                <span style="color: black;">Not assigned</span>
+                            {% endif %}
+                        </div>
+
+                        <div style="font-size: 16px; color: black;">
+                            <strong>Created At:</strong> {{ project.created_at|date:"Y-m-d H:i" }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="font-size: 16px; color: #666; text-align: center;">No ongoing projects available.</p>
+        {% endif %}
+    </div>
+{% endblock %}

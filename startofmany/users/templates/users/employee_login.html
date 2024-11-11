@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0066cc, #66ccff, #00bcd4, #0066cc);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px; /* Slightly more rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Softer, larger shadow */
+            padding: 30px; /* More padding for a spacious feel */
+            width: 350px; /* Increased width */
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .container:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px; /* Larger font size */
+        }
+        button {
+            background-color: #2980b9;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px; /* Increased padding */
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #3498db;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #3498db;
+        }
+        p {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Employee Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div style=" font-size: 18px;">
+        {{ form.as_p }}
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account?</p>
+    <p><a href="{% url 'users:videoeditor_signup' %}" style="color: blue; text-decoration: none;"
+     onmouseover="this.style.color='purple';"
+     onmouseout="this.style.color='black';">Register as Video Editor</a></p>
+    <p><a href="{% url 'users:client_signup' %}" style="color: blue; text-decoration: none;"
+     onmouseover="this.style.color='purple';"
+     onmouseout="this.style.color='black';">Register as Client</a></p>
+</div>
+</body>
+</html>

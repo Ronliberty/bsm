@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+     <link rel="stylesheet" href="{% static 'users/css/dashboard.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+      <!--=============== CSS ===============-->
+
+
+      <title>{% block title %}Dashboard{% endblock %}</title>
+   </head>
+   <body>
+      <!--=============== HEADER ===============-->
+      <header class="header" id="header">
+         <div class="header__container">
+
+            <a href="#" class="header__logo">
+                <i class='bx bxl-medium'></i>
+               <span>Blue Sky Media Works</span>
+            </a>
+
+            <button class="header__toggle" id="header-toggle">
+               <i class="ri-menu-line"></i>
+            </button>
+         </div>
+      </header>
+
+      <!--=============== SIDEBAR ===============-->
+      <nav class="sidebar" id="sidebar">
+         <div class="sidebar__container">
+            <div class="sidebar__user">
+               <div class="sidebar__img">
+                  <img src="/assets/images/man.jpg" alt="image">
+               </div>
+
+               <div class="sidebar__info">
+                  <h3>Rix Methil</h3>
+                  <span>rix123@email.com</span>
+               </div>
+            </div>
+
+            <div class="sidebar__content">
+               <div>
+                  <h3 class="sidebar__title"></h3>
+
+                  <div class="sidebar__list">
+
+                     <a href="{% url 'services:display_services' %}" class="sidebar__link" data-target="appointment">
+                        <i class='bx bxs-zap'></i>
+                        <span>Services</span>
+                     </a>
+
+                     <a href="{% url 'services:display_requested_services' %}" class="sidebar__link" data-target="calendar">
+                        <i class="ri-calendar-fill"></i>
+                        <span>Ongoing project</span>
+                     </a>
+
+                     <a href="" class="sidebar__link" data-target="recent">
+                        <i class="ri-arrow-up-down-line"></i>
+                        <span>history</span>
+                     </a>
+
+
+                     <a href="{% url 'users:client_profile' %}" class="sidebar__link" data-target="settings">
+                        <i class="ri-settings-3-fill"></i>
+                        <span>Settings</span>
+                     </a>
+
+                     <a href="{% url 'bookappointment:book_appointment' %}" class="sidebar__link" data-target="messages">
+                        <i class="ri-mail-unread-fill"></i>
+                        <span>Book appointment</span>
+                     </a>
+                      <a href="{% url 'logout' %}" class="sidebar__link" >
+                        <i class=""></i>
+                        <span>logout</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </nav>
+
+      <!--=============== MAIN ===============-->
+      <!--Dashboard-->
+      <main class="main container" id="main">
+        {% block content %}
+      <!-- Default content goes here -->
+      {% endblock %}
+
+     </main>
+
+
+      <!--=============== MAIN JS ===============-->
+    <script src="#"></script>
+   </body>
+</html>

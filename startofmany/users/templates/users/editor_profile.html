@@ -1,0 +1,45 @@
+<!-- client_profile.html -->
+<div style="background-color: lightpurple;">
+<a href="previous_page.html"
+   style="text-decoration: none; color: #333; font-weight: bold; transition: color 0.3s;
+          position: absolute; top: 20px; left: 20px;"
+   onmouseover="this.style.color='#007bff'"
+   onmouseout="this.style.color='#333'" >
+    &#8592; Go Back
+</a>
+<div style="text-align: center; padding: 20px;">
+    <img src="path/to/avatar.jpg" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid black;">
+    <h1 style="font-size: 24px; font-weight: bold; color: black; margin-top: 10px;">Editor Name</h1>
+    <p style="font-size: 16px; font-style: italic; color: gray;">Role: Video Editor</p>
+</div>
+    <p style="font-size: 18px; color: #555; text-align: center; font-style: italic; margin-top: 20px;">
+    "Welcome back, Editor! Here’s to a productive day."
+</p>
+<form method="POST" enctype="multipart/form-data" style="width: 60%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+    {% csrf_token %}
+    <div style="margin-bottom: 15px;">
+    {{ form.as_p }}
+    </div>
+    <button type="submit" style="padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 20px;">Save Changes</button>
+    <li style="margin-bottom: 20px; list-style-type: none;">
+    <a href="{% url 'users:videoeditor_password_change' %}"
+       style="display: inline-block; padding: 10px 20px;
+              background-color: #007BFF; color: white;
+              text-decoration: none; border-radius: 5px;
+              transition: background-color 0.3s;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+       onmouseover="this.style.backgroundColor='#0056b3';"
+       onmouseout="this.style.backgroundColor='#007BFF';">
+        Change password
+    </a>
+</li>
+
+        <li style="display: inline-block; padding: 10px 20px;
+              background-color: #007BFF; color: white;
+              text-decoration: none; border-radius: 5px;
+              transition: background-color 0.3s;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+       onmouseover="this.style.backgroundColor='#0056b3';"
+       onmouseout="this.style.backgroundColor='#007BFF';"><a href="{% url 'users:videoeditor_user_update' %}" style="text-decoration: none; color: white;"> update username</a></li>
+</form>
+</div>

@@ -1,0 +1,41 @@
+{% extends "dashboard/layout.html" %}
+{% block content %}
+<style>
+  .button {
+    display: inline-block;
+    padding: 10px 10px; /* Adjust padding as needed */
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+</style>
+
+  <div class="container" style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #f8f9fa; border-radius: 5px;">
+    <h2 style="text-align: center; color: black; margin-bottom: 15px;">Your Completed Projects</h2>
+
+    {% if completed_projects %}
+      <ul class="list-group" style="list-style-type: none; padding: 0; font-size: 18px;">
+        {% for project in completed_projects %}
+          <li class="list-group-item" style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px; background-color: #fff;">
+            <strong style="color: blue;">{{ project.title }}</strong> <span style=" color: black; justify-content">- Completed on {{ project.created_at|date:"F j, Y" }} </span>
+            <div style=" margin-top: 15px; margin-bottom: 15px;">
+            <a href="{{ project.file.url }}" target="_blank" class="button">View Uploaded File</a> <span style="margin-top: 10px;"> (if available) </span>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p style="text-align: center; color: black;">No completed projects to display.</p>
+    {% endif %}
+  </div>
+{% endblock %}

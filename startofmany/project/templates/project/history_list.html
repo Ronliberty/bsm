@@ -1,0 +1,65 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<style>
+  .table-responsive {
+  overflow-x: auto; /* Adds horizontal scrolling on small screens */
+}
+
+.table {
+  width: 100%; /* Ensures the table takes full width */
+  margin-bottom: 1rem; /* Adds space below the table */
+}
+
+.table th, .table td {
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+@media (max-width: 768px) {
+  .table th, .table td {
+    display: block; /* Makes the cells stack on small screens */
+    width: 100%; /* Each cell takes full width */
+  }
+}
+
+</style>
+
+  <div class="container" style="max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
+    <h2 style="text-align: center; color: black; margin-bottom: 15px;">All Completed Projects</h2>
+
+    {% if completed_projects %}
+    <div class="table-responsive">
+      <table class="table table-striped" style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background-color: aliceblue; color: black;">
+            <th style="padding: 12px; border: 1px solid #ddd;">Project Title</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Completed By</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Completion Date</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">File</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for project in completed_projects %}
+            <tr style="background-color: {% cycle '#f2f2f2' '#ffffff' %};">
+              <td style="padding: 8px; border: 1px solid #ddd;">{{ project.title }}</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">{{ project.assigned_to.username }}</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">{{ project.created_at|date:"F j, Y" }}</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">
+                {% if project.file %}
+                  <a href="{{ project.file.url }}" target="_blank" style="color: blue; text-decoration: none;"
+   onmouseover="this.style.color='#24E02B'; this.style.textDecoration='none';"
+   onmouseout="this.style.color='blue'; this.style.textDecoration='none';">Download File</a>
+                {% else %}
+                  <span style="color: #999;"> No file uploaded </span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    {% else %}
+      <p style="text-align: center; color: black;">No completed projects available.</p>
+    {% endif %}
+  </div>
+{% endblock %}

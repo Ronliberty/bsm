@@ -1,0 +1,30 @@
+<a href="previous_page.html"
+   style="text-decoration: none; color: #333; font-weight: bold; transition: color 0.3s;
+          position: absolute; top: 20px; left: 20px;"
+   onmouseover="this.style.color='#007bff'"
+   onmouseout="this.style.color='#333'" >
+    &#8592; Go Back
+</a>
+
+{% block content %}
+<style>
+    body {
+    background-color: lightcyan;
+    }
+</style>
+
+<h2 style="color: black; font-size: 24px; text-align: center; padding: 20px;">Video Editor: Update Username and Email</h2>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" style="color: white; background-color: #4CAF50; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px;">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<form method="post" style="background-color: aliceblue; width: 900px; font-size: 18px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color: blue; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Update Profile</button>
+    <p style="text-align: center; margin-top: 15px;"><a href="{% url 'users:videoeditor_user_update' %}" style="text-decoration: none; background-color: blue; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; margin-bottom:20px; margin-top:20px;">Back to Profile</a></p>
+</form>
+{% endblock %}

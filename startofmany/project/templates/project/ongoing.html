@@ -1,0 +1,54 @@
+{% extends 'dashboard/layout.html' %}
+{% block title %}Ongoing Projects{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+    background-color: #FFF6F6;
+    }
+    .button {
+    display: inline-block;
+    padding: 10px 15px; /* Adjust padding as needed */
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+</style>
+
+<h1 style="text-align: center; font-family: Arial, sans-serif; color: black; margin-bottom: 15px;">My Ongoing Projects</h1>
+{% if projects %}
+    <ul style="list-style-type: none; padding: 0;">
+        {% for project in projects %}
+            <li style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 8px; background-color: #f9f9f9;">
+                <div style="text-align: left; margin-bottom: 10px;"><strong style="font-size: 16px; color: black;">Title:</strong> <span style="font-size: 16px; color: blue; font-weight: bold; margin-bottom: 5px;"> {{ project.title }} </span> </div> <br>
+                <div style="text-align: left;"><strong style="font-size: 16px; color: black;">Description:</strong> <span style="font-size: 16px; color: #000; margin-bottom: 20px;
+                display: inline-block;">{{ project.description }}</span> <br>
+                {% if project.file %}
+                    <strong style="font-size: 16px;">File:</strong> <a href="{{ project.file.url }}" style="color: red; font-size: 16px; #007bff; font-size: 16px; margin-bottom: 20px; display: inline-block;">Download</a><br>
+                {% endif %}
+                {% if project.link %}
+                    <strong style="font-size: 16px;">Link:</strong> <a href="{{ project.link }}" target="_blank" style="color: #007bff; font-size: 16px; margin-bottom: 20px; display: inline-block;">{{ project.link }}</a><br>
+                {% endif %}
+                <strong style="font-size: 16px;">Assigned To:</strong> <span style="margin-bottom: 10px; display: inline-block;"> {{ project.assigned_to.username }} </span> <br>
+                <strong style="font-size: 16px;">Started On:</strong> <span style="font-size: 16px; color: #000; margin-bottom: 20px; display: inline-block;"> {{ project.created_at|date:"F j, Y, g:i a" }} </span> </div>
+                 <div class="button"> <a href="{% url 'project:complete_project' project.id %}" class="btn btn-success" style=" color: white; ">
+              Complete Project
+            </a></div>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No ongoing projects found
+        {% endif %}
+{% endblock %}

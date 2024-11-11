@@ -1,0 +1,113 @@
+<!-- Client_profile.html -->
+<style>
+    body {
+    background-color: lightcyan;
+    margin: 0;
+    font-family: Arial, sans-serif; /* Use a legible font */
+}
+
+/* Container styling */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    h1 {
+        font-size: 20px; /* Decrease font size for h1 */
+    }
+
+    p {
+        font-size: 14px; /* Decrease font size for paragraphs */
+    }
+
+    .profile-picture {
+        width: 100px; /* Adjust profile picture size */
+        height: 100px;
+    }
+
+    .nav-link {
+        padding: 8px 16px; /* Adjust button size */
+    }
+
+    .form-container {
+        padding: 15px; /* Adjust form padding */
+    }
+}
+
+</style>
+<a href="{% url 'users:client_dashboard'%}"
+   style="text-decoration: none; color: #333; font-weight: bold; transition: color 0.3s;
+          position: absolute; top: 20px; left: 20px;"
+   onmouseover="this.style.color='#007bff'"
+   onmouseout="this.style.color='#333'" >
+    &#8592; Go Back
+</a>
+
+<div class="container" style="background-color: lightcyan; border: none;">
+<div style="width: 100%; max-width: 1000px; margin: auto; padding: 20px; background-color: lightcyan;">
+    <!-- Page Content -->
+<div style="text-align: center; padding: 20px;">
+    <img src="path/to/avatar.jpg" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid black;">
+    <h1 style="font-size: 24px; font-weight: bold; color: black; margin-top: 10px;">Employee Name</h1>
+    <p style="font-size: 16px; font-style: italic; color: gray;">Role: Video Editor</p>
+</div>
+    <p style="font-size: 18px; color: #555; text-align: center; font-style: italic; margin-top: 20px;">
+    "Welcome back, Editor! Here’s to a productive day."
+</p>
+    <div style="display: flex; justify-content: space-between; align-items: center; background-color: black; padding: 20px; border-radius: 4px;">
+    <a href="dashboard.html" style="background-color: lightcyan; color: black; text-decoration: none; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; margin-top: 20px;"
+    onmouseover="this.style.backgroundColor='#007bff';" onmouseout="this.style.backgroundColor='lightcyan';">Dashboard</a>
+    <a href="settings.html" style="background-color: lightcyan; color: black; text-decoration: none; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; margin-top: 20px;"
+    onmouseover="this.style.backgroundColor='#007bff';" onmouseout="this.style.backgroundColor='lightcyan';">Account Settings</a>
+    <a href="settings.html" style="background-color: lightcyan; color: black; text-decoration: none; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; margin-top: 20px;"
+    onmouseover="this.style.backgroundColor='#007bff';" onmouseout="this.style.backgroundColor='lightcyan';">Notifications</a>
+    <a href="settings.html" style="background-color: lightcyan; color: black; text-decoration: none; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; margin-top: 20px;"
+    onmouseover="this.style.backgroundColor='#007bff';" onmouseout="this.style.backgroundColor='lightcyan';">Account Settings</a>
+</div>
+
+<form method="POST" enctype="multipart/form-data" style="background-color: lightcyan; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+    {% csrf_token %}
+    <div style="margin-bottom: 15px;">
+    {{ form.as_p }}
+    </div>
+    <button type="submit" style="background-color: peru; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-left: 50px;">Save Changes</button>
+    <ul style="list-style-type: none; padding: 20px; margin-top: 20px; display: flex;">
+    <li style="margin-bottom: 10px; margin: 30px;"><a href="{% url 'users:client_password_change' %}" style="
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; ">
+    <i class='bx bxs-user-circle icon' style="margin-right: 8px;"></i> Change password
+</a>
+</li>
+    <li style="margin-bottom: 10px; margin: 30px;"><a href="{% url 'users:client_user_update' %}" style="
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;">
+   <i class='bx bxs-user-circle icon' style="margin-right: 8px;"></i> update username
+        </a></li>
+    </ul>
+</form>
+</div>
+</div>

@@ -1,0 +1,74 @@
+<!-- manager_profile.html -->
+<style>
+    body {
+    background-color: lightcyan;
+    margin: 0;
+    font-family: Arial, sans-serif; /* Use a legible font */
+}
+
+/* Container styling */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    h1 {
+        font-size: 20px; /* Decrease font size for h1 */
+    }
+
+    p {
+        font-size: 14px; /* Decrease font size for paragraphs */
+    }
+
+    .profile-picture {
+        width: 100px; /* Adjust profile picture size */
+        height: 100px;
+    }
+
+    .nav-link {
+        padding: 8px 16px; /* Adjust button size */
+    }
+
+    .form-container {
+        padding: 15px; /* Adjust form padding */
+    }
+}
+
+</style>
+<a href="{% url 'dashboard:dashboard' %}"
+   style="text-decoration: none; color: #333; font-weight: bold; transition: color 0.3s;
+          position: absolute; top: 20px; left: 20px;"
+   onmouseover="this.style.color='#007bff'"
+   onmouseout="this.style.color='#333'" >
+    &#8592; Go Back
+</a>
+
+<div class="container" style="background-color: lightcyan; border: none;">
+<div style="width: 100%; max-width: 1000px; margin: auto; padding: 20px; background-color: lightcyan;">
+
+<div style="text-align: center; padding: 20px;">
+    <img src="path/to/avatar.jpg" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #4CAF50;">
+    <h1 style="font-size: 24px; font-weight: bold; color: black; margin-top: 10px;">Manager Name</h1>
+    <p style="font-size: 16px; font-style: italic; color: gray;">Role: Project Manager</p>
+</div>
+
+<form method="POST" enctype="multipart/form-data" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="margin-bottom: 20px; margin-top: 20px;">Save Changes</button>
+    <div style="margin-bottom: 20px; text-decoration: none;">
+      <a href="{% url 'users:manager_password_change' %}" style="color: white; background-color: skyblue; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; transition: background-color 0.3s; margin-top: 20px; margin-bottom: 20px;" onmouseover="this.style.backgroundColor='darkgreen';" onmouseout="this.style.backgroundColor='green';"> Change password</a>
+    </div>
+   <a href="{% url 'users:manager_user_update' %}" style="color: white; background-color: skyblue; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; transition: background-color 0.3s; margin-bottom: 20px;" onmouseover="this.style.backgroundColor='darkgreen';" onmouseout="this.style.backgroundColor='green';"> update username</a>
+
+</form>
+</div>
+</div>

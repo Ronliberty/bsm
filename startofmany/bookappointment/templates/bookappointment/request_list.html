@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Requested Services{% endblock %}
+
+{% block content %}
+    <h1>Meeting List</h1>
+    
+    {% if meeting_requests %}
+        <ul>
+            {% for meeting in meeting_requests %}
+                <li>
+                    <strong>Name:</strong> {{ meeting.name }} <br>
+                    <strong>Email:</strong> {{ meeting.email }} <br>
+                    <strong>Date:</strong> {{ meeting.date }} <br>
+                    <strong>Time:</strong> {{ meeting.time }} <br>
+                    {% if meeting.message %}
+                        <strong>Message:</strong> {{ meeting.message }} <br>
+                    {% endif %}
+                    <strong>Requested On:</strong> {{ meeting.created_at|date:"F j, Y, g:i a" }}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No meeting requests found.</p>
+    {% endif %}
+
+{% endblock %}

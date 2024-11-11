@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Editor Sign Up</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; text-align: center;">
+    <h2 style="color: #333;">Register as Video Editor</h2>
+    <form method="post" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); display: inline-block;">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+        {{ form.as_p }}
+        </div>
+        <button type="submit" style="background-color: #007BFF; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">Sign Up</button>
+    </form>
+    <p style="margin-top: 20px;">Already have an account?</p>
+    <p><a href="{% url 'users:employee_login' %}" style="color: #007BFF; text-decoration: none;">Login here</a></p>
+</body>
+</html>

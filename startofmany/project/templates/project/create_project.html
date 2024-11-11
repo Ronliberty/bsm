@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Requested Services{% endblock %}
+
+{% block content %}
+     <h1 style="font-size: 24px; color: #333; text-align: center; margin-top: 20px; margin-bottom: 20px;">Create a New Project</h1>
+    <form method="post" enctype="multipart/form-data" style="width: 60%; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #FAF8F1;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Create Project</button>
+    </form>
+
+{% endblock %}
